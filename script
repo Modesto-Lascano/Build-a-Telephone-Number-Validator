@@ -1,0 +1,26 @@
+document.getElementById('check-btn').addEventListener('click', function() {
+    const input = document.getElementById('user-input').value.trim();
+    const resultsDiv = document.getElementById('results-div');
+
+    // Check for empty input
+    if (!input) {
+        alert("Please provide a phone number");
+        return;
+    }
+
+    // Define regex patterns
+    const validNumberRegex = /^(1\s?)?(\(\d{3}\)|\d{3})([\s-]?)\d{3}([\s-]?)\d{4}$/;
+    const invalidNumberRegex = /[^0-9\s()-.]/;
+
+    // Validate input
+    if (validNumberRegex.test(input) && !invalidNumberRegex.test(input)) {
+        resultsDiv.textContent = `Valid US number: ${input}`;
+    } else {
+        resultsDiv.textContent = `Invalid US number: ${input}`;
+    }
+});
+
+document.getElementById('clear-btn').addEventListener('click', function() {
+    document.getElementById('results-div').textContent = '';
+    document.getElementById('user-input').value = '';
+});
